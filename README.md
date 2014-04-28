@@ -1,4 +1,4 @@
-slush-koa-app
-=============
+slush-koa-rest-service
+======================
 
-Slush generator for a koa webapp
+Slush generator for a RESTful service powered by [Koa](http://koajs.com/).
