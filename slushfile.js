@@ -43,6 +43,7 @@ gulp.task('default', function (done) {
       }
   ],
   function (answers) {
+    console.log(answers);
     if (!answers.moveon) {
       return done();
     }
