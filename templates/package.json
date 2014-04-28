@@ -1,0 +1,26 @@
+{
+  "name": "<%= servname %>",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elzair/koa-mongodb-example"
+  },
+  "description": "<%= servdesc %>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --harmony index.js"
+  },
+  "keywords": [
+    "koa",
+    "rest-service"
+  ],
+  "author": "<%= author %>",
+  "license": "<%= license %>",
+  "dependencies": {
+    "koa": "*",
+    "koa-route": "*",
+    "co-body": "*",
+    "koa-logger": "*"
+  }
+}

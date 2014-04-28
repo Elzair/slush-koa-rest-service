@@ -9,11 +9,21 @@ gulp.task('default', function (done) {
   inquirer.prompt([
       // Get app name from arguments by default
       {
+          type: 'input'
+        , name: 'author'
+        , message: 'Please input your name'
+      }
+    , {
           type: 'input' 
-        , name: 'name' 
-        , message: 'Give your app a name' 
+        , name: 'servname' 
+        , message: 'Now, give your REST service a name' 
         , default: gulp.args.join(' ')
       } 
+    , {
+          type: 'input'
+        , name: 'servdesc'
+        , message: 'Describe your service'
+      }
     , {
           type: 'confirm' 
         , name: 'moveon' 
