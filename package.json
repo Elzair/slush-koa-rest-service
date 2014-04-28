@@ -2,7 +2,7 @@
   "name": "slush-koa-app",
   "version": "0.0.1",
   "description": "Slush generator for a koa-based application",
-  "main": "index.js",
+  "main": "slushfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,12 @@
   "bugs": {
     "url": "https://github.com/Elzair/slush-koa-app/issues"
   },
-  "homepage": "https://github.com/Elzair/slush-koa-app"
+  "homepage": "https://github.com/Elzair/slush-koa-app",
+  "dependencies": {
+    "gulp-install": "~0.1.4",
+    "gulp-conflict": "~0.1.1",
+    "gulp-template": "~0.1.1",
+    "gulp": "~3.6.2",
+    "inquirer": "~0.4.1"
+  }
 }
