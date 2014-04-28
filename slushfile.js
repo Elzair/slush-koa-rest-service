@@ -1,8 +1,10 @@
-var gulp = require('gulp')
-  , install = require('gulp-install')
+var exec     = require('child_process').exec
+  , gulp     = require('gulp')
+  , install  = require('gulp-install')
   , conflict = require('gulp-conflict')
   , template = require('gulp-template')
   , inquirer = require('inquirer')
+  , path     = require('path')
   ;
 
 gulp.task('default', function (done) {
@@ -17,7 +19,7 @@ gulp.task('default', function (done) {
           type: 'input' 
         , name: 'servname' 
         , message: 'Now, give your REST service a name' 
-        , default: gulp.args.join(' ')
+        , default: path.basename(process.cwd())
       } 
     , {
           type: 'input'
@@ -28,6 +30,11 @@ gulp.task('default', function (done) {
           type: 'input'
         , name: 'license'
         , message: 'What license do you wish to use?'
+      }
+    , {
+          type: 'confirm'
+        , name: 'gitrepo'
+        , message: 'Create Git repository?'
       }
     , {
           type: 'confirm' 
@@ -45,7 +52,17 @@ gulp.task('default', function (done) {
       .pipe(gulp.dest('./'))                   // Without __dirname here = relative to cwd
       .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
       .on('end', function () {
-        done();                                // Finished!
+        if (answers.gitrepo) {
+          exec('git init && git add . && git commit -m "Initial commit"', function(error, stdout, stderr) {
+            if (!error) {
+              console.error('Error creating Git Repository: ' + error);
+            }
+            done();
+          });
+        }
+        else {
+          done();
+        }
       });
   });
 });
