@@ -1,6 +1,6 @@
 {
   "name": "slush-koa-rest-service",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Slush generator for a RESTful service powered by Koa",
   "main": "slushfile.js",
   "scripts": {

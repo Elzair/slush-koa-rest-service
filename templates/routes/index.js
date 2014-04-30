@@ -9,7 +9,7 @@ var fs     = require('co-fs')
  * Default route.
  */
 exports.index = function *() {
-  this.result.body = yield fs.readFile(__dirname + '../README.md');
+  this.body = yield fs.readFile(__dirname + '../README.md');
 };
 
 
