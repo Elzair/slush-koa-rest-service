@@ -5,16 +5,18 @@ var exec     = require('child_process').exec
   , template = require('gulp-template')
   , inquirer = require('inquirer')
   , path     = require('path')
+  , rename   = require('gulp-rename')
   ;
 
 gulp.task('default', function (done) {
   inquirer.prompt([
-      // Get app name from arguments by default
+
       {
           type: 'input'
         , name: 'author'
-        , message: 'Please input your name'
+        , message: 'Input your name'
       }
+    // Get app name from arguments by default
     , {
           type: 'input' 
         , name: 'servname' 
@@ -32,11 +34,6 @@ gulp.task('default', function (done) {
         , message: 'What license do you wish to use?'
       }
     , {
-          type: 'confirm'
-        , name: 'gitrepo'
-        , message: 'Create Git repository?'
-      }
-    , {
           type: 'confirm' 
         , name: 'moveon' 
         , message: 'Continue?'
@@ -47,23 +44,18 @@ gulp.task('default', function (done) {
     if (!answers.moveon) {
       return done();
     }
-    gulp.src(__dirname + '/templates/**')     // Note use of __dirname to be relative to generator
+    gulp.src(__dirname + '/templates/**')       // Note use of __dirname to be relative to generator
       .pipe(template(answers))                 // Lodash template support
+      .pipe(rename(function(file) {            // Rename pseudo-hidden files
+        if (file.basename[0] === '_') {
+          file.basename = '.' + file.basename.slice(1);
+        }
+      }))
       .pipe(conflict('./'))                    // Confirms overwrites on file conflicts
       .pipe(gulp.dest('./'))                   // Without __dirname here = relative to cwd
       .pipe(install())                         // Run `bower install` and/or `npm install` if necessary
       .on('end', function () {
-        if (answers.gitrepo) {
-          exec('git init && git add . && git commit -m "Initial commit"', function(error, stdout, stderr) {
-            if (!error) {
-              console.error('Error creating Git Repository: ' + error);
-            }
-            done();
-          });
-        }
-        else {
-          done();
-        }
+        done();
       });
   });
 });

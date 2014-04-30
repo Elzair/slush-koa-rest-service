@@ -1,4 +1,5 @@
-var parse  = require('co-body')
+var fs     = require('co-fs')
+  , parse  = require('co-body')
   ;
 
 
@@ -8,6 +9,7 @@ var parse  = require('co-body')
  * Default route.
  */
 exports.index = function *() {
-  this.result.body = yield "Hello World!";
+  this.result.body = yield fs.readFile(__dirname + '../README.md');
 };
+
 

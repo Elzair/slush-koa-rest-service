@@ -17,6 +17,7 @@
     "koa": "*",
     "koa-route": "*",
     "co-body": "*",
-    "koa-logger": "*"
+    "koa-logger": "*",
+    "co-fs": "*"
   }
 }

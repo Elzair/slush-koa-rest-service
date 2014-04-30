@@ -27,6 +27,7 @@
     "gulp-conflict": "~0.1.1",
     "gulp-template": "~0.1.1",
     "gulp": "~3.6.2",
-    "inquirer": "~0.4.1"
+    "inquirer": "~0.4.1",
+    "gulp-rename": "~1.2.0"
   }
 }
